@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="居酒屋をもっと楽しく！飲み仲間と一緒に遊べるビンゴゲーム">
+  <meta name="theme-color" content="#d4a574">
+  <title>呑み助ビンゴ - 飲み歩きがもっと楽しくなる</title>
+  
+  <link rel="stylesheet" href="landing.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+  <div class="landing-container">
+    
+    <!-- ヒーロー + CTA -->
+    <section class="hero">
+      <div class="hero-image-wrap">
+        <div class="hero-placeholder">
+          <span class="hero-placeholder-emoji">🍺🏮</span>
+          <span class="hero-placeholder-title">呑み助ビンゴ</span>
+          <span class="hero-placeholder-sub">NOMISUKE BINGO</span>
+        </div>
+      </div>
+      <div class="hero-content">
+        <p class="hero-tagline">いつもの一杯が、ワクワクする冒険に</p>
+        <a href="game.html" class="btn-start">✨ 今すぐ始める</a>
+      </div>
+    </section>
+    
+    <!-- メインコンテンツ（1ブロックに集約） -->
+    <section class="main-content">
+      <div class="content-grid">
+        <!-- 特徴 -->
+        <div class="content-block">
+          <h2 class="block-title">3つの特徴</h2>
+          <div class="feature-list">
+            <div class="feature-item">
+              <strong>飲み仲間と楽しめる</strong>
+              <span>合言葉で友達・同僚と一緒に</span>
+            </div>
+            <div class="feature-item">
+              <strong>思い出を残せる</strong>
+              <span>写真で記録、後で見返せる</span>
+            </div>
+            <div class="feature-item">
+              <strong>簡単に遊べる</strong>
+              <span>アプリ不要、ブラウザだけで</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 遊び方 -->
+        <div class="content-block">
+          <h2 class="block-title">遊び方</h2>
+          <div class="howto-list">
+            <div class="howto-item">
+              <span class="step-num">1</span>
+              <span>合言葉を決めてスタート</span>
+            </div>
+            <div class="howto-item">
+              <span class="step-num">2</span>
+              <span>居酒屋でお題を探す</span>
+            </div>
+            <div class="howto-item">
+              <span class="step-num">3</span>
+              <span>見つけたらマーク、ビンゴ！</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- おすすめ -->
+      <div class="recommend-block">
+        <h2 class="block-title">こんな人におすすめ</h2>
+        <div class="recommend-grid">
+          <div class="recommend-item">飲み会の盛り上げ</div>
+          <div class="recommend-item">はしご酒</div>
+          <div class="recommend-item">初対面の飲み会</div>
+          <div class="recommend-item">歓送迎会</div>
+          <div class="recommend-item">忘年会新年会</div>
+          <div class="recommend-item">飲み歩き好き</div>
+        </div>
+      </div>
+
+      <!-- 広告枠（インフィード） -->
+      <div class="ad-slot ad-slot-infeed" id="adSlotInfeed">
+        <div class="ad-slot-inner">
+          <span class="ad-slot-label">広告</span>
+          <!-- ↓ AdSense導入時にここを差し替え ↓ -->
+          <div class="ad-placeholder">
+            <p class="ad-placeholder-text">AD</p>
+            <p class="ad-placeholder-sub">レスポンシブ広告</p>
+          </div>
+          <!-- ↑ AdSense導入時にここを差し替え ↑ -->
+        </div>
+      </div>
+      
+      <!-- CTA -->
+      <div class="cta-bottom">
+        <a href="game.html" class="btn-start btn-large">✨ 呑み助ビンゴを始める</a>
+      </div>
+    </section>
+    
+    <!-- フッター -->
+    <footer class="footer">
+      <p>© 2026 呑み助ビンゴ　<span class="dot">・</span>　アプリ不要・無料</p>
+    </footer>
+
+    <!-- 広告枠（フッター上） -->
+    <div class="ad-slot ad-slot-footer" id="adSlotFooter">
+      <div class="ad-slot-inner">
+        <span class="ad-slot-label">広告</span>
+        <!-- ↓ AdSense導入時にここを差し替え ↓ -->
+        <div class="ad-placeholder ad-placeholder-banner">
+          <p class="ad-placeholder-text">AD</p>
+          <p class="ad-placeholder-sub">728 × 90</p>
+        </div>
+        <!-- ↑ AdSense導入時にここを差し替え ↑ -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Service Worker登録 -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log('✅ Service Worker登録成功:', reg.scope))
+          .catch(err => console.log('❌ Service Worker登録失敗:', err));
+      });
+    }
+  </script>
+</body>
+</html>
