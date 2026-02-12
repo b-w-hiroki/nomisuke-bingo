@@ -6,7 +6,9 @@ const urlsToCache = [
   'styles.css',
   'topics.js',
   'app.js',
-  'manifest.json'
+  'manifest.json',
+  'icon-192.png',
+  'icon-512.png'
 ];
 
 // インストール時にキャッシュを作成

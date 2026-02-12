@@ -330,6 +330,34 @@ body {
   animation-delay: 0.5s;
 }
 
+/* ========== 安全・注意 ========== */
+.safety-note {
+  margin-top: 18px;
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.22);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.safety-note-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #b23b3b;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.safety-note-text {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.safety-note-text strong {
+  font-weight: 800;
+}
+
 /* ========== 広告枠 ========== */
 .ad-slot {
   width: 100%;
