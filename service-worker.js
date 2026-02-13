@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nomisuke-bingo-v1';
+const CACHE_NAME = 'nomisuke-bingo-v2';
 const urlsToCache = [
   'index.html',
   'game.html',
@@ -7,6 +7,7 @@ const urlsToCache = [
   'topics.js',
   'app.js',
   'manifest.json',
+  'lib/html2canvas.min.js',
   'icon-192.png',
   'icon-512.png'
 ];
