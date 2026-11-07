@@ -148,10 +148,24 @@ const topicDatabase = {
 
 // 難易度に応じてお題を選択する関数
 // shuffleSalt: 作り直し時に毎回異なるシャッフルにするため（省略時は合言葉で固定）
+// 注文や飲酒を条件にせず、発見と会話だけで達成できるセット。
+const discoveryTopics = [
+  'おすすめを聞く', '好きな料理の話', '今日よかったこと', '行ってみたい場所の話',
+  'お茶を見つける', '水を見つける', 'ジュースを見つける', 'ノンアルのメニュー',
+  '手書きの文字', '丸いお皿', '四角いお皿', '小鉢',
+  '箸置き', 'おしぼり', '季節のメニュー', '緑色の食材',
+  '赤色の食材', '焼き物のメニュー', '温かい料理', '冷たい料理',
+  '野菜のメニュー', 'ご飯のメニュー', '初めて知った料理', 'ありがとうを伝える',
+  '共通の好みを見つける', '料理の香りを楽しむ', '器の模様', '店内の飾り'
+].map((text, index) => ({ id: 201 + index, text, icon: '🔎', category: '発見・会話' }));
+
 function selectTopicsByDifficulty(difficulty, roomCode = '', userId = '', shuffleSalt = '') {
   let selectedTopics = [];
   
   switch(difficulty) {
+    case 'discovery':
+      selectedTopics = [...discoveryTopics];
+      break;
     case 'easy':
       // かんたん: easy のみから24個
       selectedTopics = [...topicDatabase.easy];

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nomisuke-bingo-v2';
+const CACHE_NAME = 'nomisuke-bingo-v3';
 const urlsToCache = [
   'index.html',
   'game.html',
@@ -16,7 +16,7 @@ const urlsToCache = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(urlsToCache).catch(() => {}))
+      .then((cache) => cache.addAll(urlsToCache))
       .then(() => self.skipWaiting())
   );
 });
@@ -26,7 +26,7 @@ self.addEventListener('fetch', (event) => {
   // ナビゲーション（ページ遷移）はSWを通さずブラウザに任せる（リンクエラー回避）
   if (event.request.mode === 'navigate') return;
   event.respondWith(
-    caches.match(event.request)
+    caches.open(CACHE_NAME).then(cache => cache.match(event.request))
       .then((response) => response || fetch(event.request))
   );
 });
@@ -37,7 +37,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          if (cacheName.startsWith('nomisuke-bingo-') && cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
         })
