@@ -1,0 +1,6 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
+const source=fs.readFileSync('service-worker.js','utf8');
+function harness(fail=false){const handlers={},deleted=[];let skipped=0;const cache=source.match(/const CACHE_NAME = '([^']+)'/)[1],prefix=cache.replace(/v\d+$/,'');vm.runInNewContext(source,{self:{addEventListener:(e,cb)=>handlers[e]=cb,skipWaiting:()=>skipped++,clients:{claim(){}}},caches:{open:async()=>({addAll:async()=>{if(fail)throw Error('network')}}),keys:async()=>[cache,prefix+'v1','other-app-v1'],delete:async n=>deleted.push(n)}});return{handlers,deleted,get skipped(){return skipped}}}
+test('required cache failure prevents install',async()=>{const h=harness(true);let p;h.handlers.install({waitUntil:x=>p=x});await assert.rejects(p,/network/);assert.equal(h.skipped,0)});
+test('success permits activation',async()=>{const h=harness();let p;h.handlers.install({waitUntil:x=>p=x});await p;assert.equal(h.skipped,1)});
+test('other apps survive activation',async()=>{const h=harness();let p;h.handlers.activate({waitUntil:x=>p=x});await p;assert.equal(h.deleted.length,1);assert.notEqual(h.deleted[0],'other-app-v1')});

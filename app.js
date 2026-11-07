@@ -380,6 +380,7 @@ class NomisukeBingo {
     
     if (this.difficultyDisplay) {
       const diffText = {
+        'discovery': 'ノンアル・発見と会話',
         'easy': 'かんたん',
         'medium': 'ふつう',
         'hard': 'むずかしい'
